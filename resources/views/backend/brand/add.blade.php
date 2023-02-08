@@ -103,6 +103,7 @@
                     error: function (reject) {
                         console.log(reject);
                         var response = $.parseJSON(reject.responseText);
+                        console.log(response);
                         $.each(response.errors , function (key , value) {
                             $('#' + key+'_error').text(value);
                         });
