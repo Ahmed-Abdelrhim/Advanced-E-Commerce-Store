@@ -107,7 +107,7 @@ Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdat
 Route::prefix('brand')->group(function () {
 
     Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
-    Route::post('/add/new', [BrandController::class, 'brandAddForm'])->name('add.brand.form');
+    Route::get('/add/new', [BrandController::class, 'brandAddForm'])->name('add.brand.form');
 
     Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
 
