@@ -99,5 +99,13 @@ class AdminProfileController extends Controller
         return view('backend.user.all_user', compact('users'));
     }
 
+    public function AdminPlay()
+    {
+        $media = auth()->user()->getMedia('avatars');
+        return $media->last()->getUrl('profile image');
+        if (count($media) > 0)
+            return $media;
+        return 'No Media Found';
+    }
 
 }

@@ -79,6 +79,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
 
     Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
+    Route::get('/admin/play', [AdminProfileController::class, 'AdminPlay'])->name('play');
 
 });  // end Middleware admin
 

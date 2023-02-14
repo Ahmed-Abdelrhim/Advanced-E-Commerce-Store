@@ -59,10 +59,13 @@ class Admin extends Authenticatable implements HasMedia
         'profile_photo_url',
     ];
 
-    //This is The method that does all the magic
+    //This is The method that does all the magic·
 
     public function registerMediaCollections(): void
     {
+        $this->addMediaCollection('avatars')
+            ->singleFile();
+
         // TODO: Implement registerMediaCollections() method.
         $this->addMediaCollection('avatars')
             ->registerMediaConversions(function (Media $media) {
@@ -71,13 +74,21 @@ class Admin extends Authenticatable implements HasMedia
                     ->width(100)
                     ->sharpen(10);
             });
+
+
     }
 
     public function getImagesAttribute()
     {
-        if (!empty($this->getFirstMediaUrl('avatars','profile image'))) {
-            return $this->getFirstMediaUrl('avatars','profile image');
+        auth()->user()->getMedia();
+        if (!empty($this->getFirstMediaUrl('avatars', 'profile image'))) {
+            return $this->getFirstMediaUrl('avatars', 'profile image');
         }
+
+        //        $media = auth()->guard('admin')->user()->getMedia('avatars'));
+        //        if (count($media) > 0) {
+        //
+        //        }
         return asset('upload/no_image.jpg');
     }
 
